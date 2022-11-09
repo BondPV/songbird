@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.ico">
+  <title>Songbird</title>
+</head>
+<body class="body">
+  <header class="header">
+    <div class="container">
+      <div class="header__wrapper">
+        <div class="header__logo">
+          <img src="assets/icons/logo.svg" alt="logo" class="header__logo-img">
+        </div>
+        <nav class="menu">
+          <ul class="menu__list">
+            <li class="menu__item"><a href="#main-page" class="menu__link">Главная</a></li>
+            <li class="menu__item"><a href="#game" class="menu__link">Играть</a></li>
+            <li class="menu__item"><a href="#gallery" class="menu__link">Галерея</a></li>
+          </ul>
+        </nav>
+        <div class="header__score">Score: <span>0</span></div>
+      </div>
+    </div>
+  </header>
+  <main class="main">
+    <div class="container">
+      <div class="main__wrapper">
+        <section class="quiz">
+          <ul class="quiz__question-category">
+            <li class="quiz__category-list active">Разминка</li>
+            <li class="quiz__category-list">Воробьиные</li>
+            <li class="quiz__category-list">Лесные птицы</li>
+            <li class="quiz__category-list">Певчие птицы</li>
+            <li class="quiz__category-list">Хищные птицы</li>
+            <li class="quiz__category-list">Морские птицы</li>
+          </ul>
+          <section class="congratulate hide">
+            <h2 class="congratulate__title">Поздравляем!</h2>
+            <div class="congratulate__score">Вы прошли викторину и набрали <span>30</span> из 30 возможных баллов</div>
+          </section>
+          <section class="quiz__question-wrapper">
+            <div class="quiz__question">
+              <div class="quiz__question-img"><img src="assets/images/bird.jpg" alt="random bird"></div>
+              <div class="quiz__media-wrapper">
+                <div class="quiz__question-name">Козодой</div>
+                <span class="quiz__line"></span>
+                <div class="audio-player">
+                  <audio class="audio-player__audio" controls>
+                    <source src="#" type="audio/mp3">
+                  </audio>
+                  <button class="audio-player__play-btn">
+                    <img src="assets/icons/play.svg" alt="play" class="audio-player__play-btn-img">
+                  </button>
+                  <div class="audio-player__timeline-wrapper">
+                    <div class="audio-player__play-time">00:00</div>
+                    <input type="range" class="audio-player__timeline" max="100" value="0">
+                    <div class="audio-player__long-time">00:00</div>
+                  </div>
+                  <div class="audio-player__speaker-btn">
+                    <img src="assets/icons/speaker.svg" alt="Volume" class="audio-player__speaker">
+                  </div>
+                  <input type="range" class="audio-player__volume" min="0" max="5">
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="quiz__answer media-queries">
+            <div class="quiz__answer-options">
+              <li class="quiz__answer-item"><span class="quiz__marker quiz__marker_yes"></span> Ворон</li>
+              <li class="quiz__answer-item"><span class="quiz__marker quiz__marker_no"></span>Журавль</li>
+              <li class="quiz__answer-item"><span class="quiz__marker"></span>Ласточка</li>
+              <li class="quiz__answer-item"><span class="quiz__marker"></span>Козодой</li>
+              <li class="quiz__answer-item"><span class="quiz__marker"></span>Синица</li>
+              <li class="quiz__answer-item"><span class="quiz__marker"></span>Кукушка</li>
+            </div>
+            <!-- <div class="quiz__description">
+              <p>Послушайте плеер.</p>
+              <p>Выберите птицу из списка</p>
+            </div> -->
+            <div class="quiz__question-wrapper quiz__border">
+              <div class="quiz__description">
+                <div class="quiz__question">
+                  <div class="quiz__question-img"><img src="assets/images/bird.jpg" alt="random bird"></div>
+                  <div class="quiz__media-wrapper">
+                    <div class="quiz__question-name">Ворон</div>
+                    <span class="quiz__line"></span>
+                    <div class="quiz__question-name-en">Corvus corax</div>
+                    <span class="quiz__line"></span>
+                    <div class="audio-player">
+                      <audio class="audio-player__audio" controls>
+                        <source src="#" type="audio/mp3">
+                      </audio>
+                      <button class="audio-player__play-btn">
+                        <img src="assets/icons/play.svg" alt="play" class="audio-player__play-btn-img">
+                      </button>
+                      <div class="audio-player__timeline-wrapper">
+                        <div class="audio-player__play-time">00:00</div>
+                        <input type="range" class="audio-player__timeline" max="100" value="0">
+                        <div class="audio-player__long-time">00:00</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="quiz__description-txt">
+                    Ворон – крупная птица. Длина тела достигает 70 сантиметров, размах крыльев – до полутора метров. Вороны населяют окрестности Тауэра. В Англии бытует поверье, что в день, когда черные вороны улетят от Тауэра, монархия рухнет.
+                </div>
+              </div>
+            </div>
+          </section>
+          <button class="buttom-next">Следующий вопрос</button>
+        </section>
+      </div>
+    </div>
+  </main>
+  <footer class="'footer">
+    <div class="container">
+      <div class="footer__wrap">
+        <a href="https://rs.school/js/"><img src="assets/icons/rs-school-js.svg" alt="Rolling Scopes School" class="footer__logo"></a>
+        <a href="https://github.com/BondPV" class="footer__copyright">BondPV ©2022</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

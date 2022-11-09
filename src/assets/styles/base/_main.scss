@@ -1,0 +1,24 @@
+* {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: $text-color;
+}
+.body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  background-color: $bcg-color;
+  z-index: -1;
+}
+.container {
+  position: relative;
+  max-width: 1200px;
+  padding: 0 10px;
+  margin: 0 auto;
+}
+.main {
+  flex-grow: 1;
+}

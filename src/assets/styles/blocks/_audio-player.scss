@@ -1,0 +1,88 @@
+.audio-player {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 4px;
+  font-size: 0.8em;
+  &__audio {
+    display: none;
+  }
+  &__play-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 40px;
+    min-width: 40px;
+    background: none;
+    border: 2px solid $main-color-light;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  &__play-btn-img {
+    height: 20px;
+    width: auto;
+  }
+  //входной диапазон
+  &__timeline-wrapper {
+    width: 100%;
+    position: relative;
+  }
+  &__play-time {
+    position: absolute;
+    top: 22px;
+    opacity: 0.8;
+  }
+  &__long-time {
+    position: absolute;
+    top: 22px;
+    right: 0;
+    opacity: 0.8;
+  }
+  &__timeline {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 5px;
+    background-color: $timeline;
+    border-radius: 5px;
+    background-size: 0% 100%;
+    background-image: linear-gradient($main-color-light, $main-color);
+    background-repeat: no-repeat;
+    //стиль ползунка
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background-color: $main-color;
+      cursor: pointer;
+    }
+  }
+  &__speaker {
+    display: block;
+    width: 25px;
+    height: auto;
+    cursor: pointer;
+    opacity: 0.8;
+    &:hover {
+      opacity: 1;
+      transition: 0.3s all;
+    }
+  }
+  &__volume {
+    -webkit-appearance: none;
+    width: 40px;
+    height: 5px;
+    background-color: $timeline;
+    border-radius: 5px;
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background-color: $main-color;
+      cursor: pointer;
+    }
+  }
+}

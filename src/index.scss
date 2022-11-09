@@ -1,0 +1,19 @@
+@import 'assets/styles/libs/normalize';
+@import 'assets/styles/libs/font';
+
+@import 'assets/styles/base/variables';
+@import 'assets/styles/base/mixins';
+@import 'assets/styles/base/main';
+
+@import 'assets/styles/blocks/header';
+@import 'assets/styles/blocks/quiz';
+@import 'assets/styles/blocks/footer';
+@import 'assets/styles/blocks/congratulate';
+
+@import 'assets/styles/blocks/audio-player';
+
+@import 'assets/styles/blocks/media';
+
+.hide {
+  display: none;
+}

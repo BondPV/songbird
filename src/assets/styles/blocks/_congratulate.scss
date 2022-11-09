@@ -1,0 +1,17 @@
+.congratulate {
+  height: 60vh;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  background-color: $bcg-color-light;
+  &__title {
+    font-size: 4rem;
+  }
+  &__score {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+}

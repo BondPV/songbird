@@ -1,0 +1,41 @@
+.header {
+  width: 100%;
+  padding: 20px 20px;
+  &__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  }
+  &__logo-img {
+    display: block;
+    width: 200px;
+    height: auto;
+  }
+  &__score {
+    font-size: 1.5rem;
+    color: $text-color;
+  }
+}
+
+.menu {
+  margin-left: 30px;
+  margin-right: auto;
+  &__list {
+    display: flex;
+    align-items: center;
+  }
+  &__item {
+    display: block;
+    text-align: center;
+    width: 80px;
+    list-style-type: none;
+  }
+  &__link {
+    text-decoration: none;
+    &:hover {
+      color: $main-color-light;
+      font-size: 1.2em;
+      transition: 0.3s all;
+    }
+  }  
+}
