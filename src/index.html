@@ -30,7 +30,7 @@
       <div class="main__wrapper">
         <section class="quiz">
           <ul class="quiz__question-category">
-            <li class="quiz__category-list active">Разминка</li>
+            <li class="quiz__category-list">Разминка</li>
             <li class="quiz__category-list">Воробьиные</li>
             <li class="quiz__category-list">Лесные птицы</li>
             <li class="quiz__category-list">Певчие птицы</li>
@@ -43,13 +43,13 @@
           </section>
           <section class="quiz__question-wrapper">
             <div class="quiz__question">
-              <div class="quiz__question-img"><img src="assets/images/bird.jpg" alt="random bird"></div>
+              <div class="quiz__question-img"><img id="question-img" src="assets/images/bird.jpg" alt="random bird"></div>
               <div class="quiz__media-wrapper">
-                <div class="quiz__question-name">Козодой</div>
+                <div class="quiz__question-name" id="question-name">******</div>
                 <span class="quiz__line"></span>
                 <div class="audio-player">
-                  <audio class="audio-player__audio" controls>
-                    <source src="#" type="audio/mp3">
+                  <audio id="question-audio" class="audio-player__audio" controls>
+                    <source src="assets/test.mp3" type="audio/mp3">
                   </audio>
                   <button class="audio-player__play-btn">
                     <img src="assets/icons/play.svg" alt="play" class="audio-player__play-btn-img">
@@ -69,21 +69,21 @@
           </section>
           <section class="quiz__answer media-queries">
             <div class="quiz__answer-options">
-              <li class="quiz__answer-item"><span class="quiz__marker quiz__marker_yes"></span> Ворон</li>
-              <li class="quiz__answer-item"><span class="quiz__marker quiz__marker_no"></span>Журавль</li>
-              <li class="quiz__answer-item"><span class="quiz__marker"></span>Ласточка</li>
-              <li class="quiz__answer-item"><span class="quiz__marker"></span>Козодой</li>
-              <li class="quiz__answer-item"><span class="quiz__marker"></span>Синица</li>
-              <li class="quiz__answer-item"><span class="quiz__marker"></span>Кукушка</li>
+              <li class="quiz__answer-item">Ворон</li>
+              <li class="quiz__answer-item">Журавль</li>
+              <li class="quiz__answer-item">Ласточка</li>
+              <li class="quiz__answer-item">Козодой</li>
+              <li class="quiz__answer-item quiz__answer-item_no">Синица</li>
+              <li class="quiz__answer-item quiz__answer-item_yes">Кукушка</li>
             </div>
-            <!-- <div class="quiz__description">
+            <div id="answer-description" class="quiz__question-wrapper quiz__border">
+            <div class="quiz__description">
               <p>Послушайте плеер.</p>
               <p>Выберите птицу из списка</p>
-            </div> -->
-            <div class="quiz__question-wrapper quiz__border">
-              <div class="quiz__description">
+            </div>
+              <!-- <div class="quiz__description">
                 <div class="quiz__question">
-                  <div class="quiz__question-img"><img src="assets/images/bird.jpg" alt="random bird"></div>
+                  <div class="quiz__question-img"><img src="assets/images/birds/garrulus-glandarius.jpg" alt="random bird"></div>
                   <div class="quiz__media-wrapper">
                     <div class="quiz__question-name">Ворон</div>
                     <span class="quiz__line"></span>
@@ -107,7 +107,7 @@
                 <div class="quiz__description-txt">
                     Ворон – крупная птица. Длина тела достигает 70 сантиметров, размах крыльев – до полутора метров. Вороны населяют окрестности Тауэра. В Англии бытует поверье, что в день, когда черные вороны улетят от Тауэра, монархия рухнет.
                 </div>
-              </div>
+              </div> -->
             </div>
           </section>
           <button class="buttom-next">Следующий вопрос</button>
