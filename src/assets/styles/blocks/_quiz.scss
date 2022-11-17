@@ -125,4 +125,11 @@
   &:hover {
     background-color: $main-color-light;
   }
+  &_disable {
+    background-color: $bcg-border-color;
+    cursor: not-allowed;
+    &:hover {
+      background-color: $bcg-border-color;
+    }
+  }
 }

@@ -16,19 +16,33 @@
         </div>
         <nav class="menu">
           <ul class="menu__list">
-            <li class="menu__item"><a href="#main-page" class="menu__link">Главная</a></li>
-            <li class="menu__item"><a href="#game" class="menu__link">Играть</a></li>
-            <li class="menu__item"><a href="#gallery" class="menu__link">Галерея</a></li>
+            <li class="menu__item"><a href="#main-page" class="menu__link" id="link-main-page">Главная</a></li>
+            <li class="menu__item"><a href="#game" class="menu__link" id="link-game">Играть</a></li>
+            <li class="menu__item"><a href="#gallery" class="menu__link" id="link-gallery">Галерея</a></li>
           </ul>
         </nav>
-        <div class="header__score">Score: <span>0</span></div>
+        <div class="header__score hide">Score: <span id="score">0</span></div>
       </div>
     </div>
   </header>
   <main class="main">
     <div class="container">
       <div class="main__wrapper">
-        <section class="quiz">
+        <section class="main-page">
+          <div class="main-page__desc">
+            <h1>Викторина для распознавания птиц по их голосам</h1>
+            <p>Мир птиц богат звуками. Данная игра предлагает попробовать определить птицу по ее голосу.</p>
+          </div>
+          <div class="main-page__video-container">
+            <video class="main-page__video" src="assets/song-birds-prev.mp4" muted autoplay="" loop="" controls></video>
+          </div>
+          <div class="main-page__caption">
+            <h2>Правила Игры</h2>
+            <p>В начале игры количество баллов 0. Если игрок дал правильный ответ с первой попытки, его счёт увеличивается на 5 баллов, каждая следующая попытка даёт на один балл меньше, если правильный ответ дан только с последней, шестой попытки, игрок получает за него 0 баллов. Баллы за все вопросы суммируются</p>
+          </div>
+          <button id="button-start" class="main-page__button game-button">Начать игру</button>
+        </section>
+        <section class="quiz hide">
           <ul class="quiz__question-category">
             <li class="quiz__category-list">Разминка</li>
             <li class="quiz__category-list">Воробьиные</li>
@@ -39,17 +53,16 @@
           </ul>
           <section class="congratulate hide">
             <h2 class="congratulate__title">Поздравляем!</h2>
-            <div class="congratulate__score">Вы прошли викторину и набрали <span>30</span> из 30 возможных баллов</div>
+            <div class="congratulate__score">Вы прошли викторину и набрали <span id="score-end">30</span> из 30 возможных баллов</div>
           </section>
-          <section class="quiz__question-wrapper">
+          <section class="quiz__question-wrapper hide">
             <div class="quiz__question">
               <div class="quiz__question-img"><img id="question-img" src="assets/images/bird.jpg" alt="random bird"></div>
               <div class="quiz__media-wrapper">
                 <div class="quiz__question-name" id="question-name">******</div>
                 <span class="quiz__line"></span>
-                <div class="audio-player">
-                  <audio id="question-audio" class="audio-player__audio" controls>
-                    <source src="assets/test.mp3" type="audio/mp3">
+                <div id="question-audio" class="audio-player">
+                  <!-- <audio id="question-audio" class="audio-player__audio" src="" type="audio/mp3" preload = "metadata" controls >
                   </audio>
                   <button class="audio-player__play-btn">
                     <img src="assets/icons/play.svg" alt="play" class="audio-player__play-btn-img">
@@ -62,55 +75,26 @@
                   <div class="audio-player__speaker-btn">
                     <img src="assets/icons/speaker.svg" alt="Volume" class="audio-player__speaker">
                   </div>
-                  <input type="range" class="audio-player__volume" min="0" max="5">
+                  <input type="range" class="audio-player__volume" min="0" max="5"> -->
                 </div>
               </div>
             </div>
           </section>
+
           <section class="quiz__answer media-queries">
-            <div class="quiz__answer-options">
-              <li class="quiz__answer-item">Ворон</li>
-              <li class="quiz__answer-item">Журавль</li>
-              <li class="quiz__answer-item">Ласточка</li>
-              <li class="quiz__answer-item">Козодой</li>
-              <li class="quiz__answer-item quiz__answer-item_no">Синица</li>
-              <li class="quiz__answer-item quiz__answer-item_yes">Кукушка</li>
-            </div>
+            <div class="quiz__answer-options"></div>
             <div id="answer-description" class="quiz__question-wrapper quiz__border">
-            <div class="quiz__description">
-              <p>Послушайте плеер.<br>
-              Выберите птицу из списка</p>
-            </div>
-              <!-- <div class="quiz__description">
-                <div class="quiz__question">
-                  <div class="quiz__question-img"><img src="assets/images/birds/garrulus-glandarius.jpg" alt="random bird"></div>
-                  <div class="quiz__media-wrapper">
-                    <div class="quiz__question-name">Ворон</div>
-                    <span class="quiz__line"></span>
-                    <div class="quiz__question-name-en">Corvus corax</div>
-                    <span class="quiz__line"></span>
-                    <div class="audio-player">
-                      <audio class="audio-player__audio" controls>
-                        <source src="#" type="audio/mp3">
-                      </audio>
-                      <button class="audio-player__play-btn">
-                        <img src="assets/icons/play.svg" alt="play" class="audio-player__play-btn-img">
-                      </button>
-                      <div class="audio-player__timeline-wrapper">
-                        <div class="audio-player__play-time">00:00</div>
-                        <input type="range" class="audio-player__timeline" max="100" value="0">
-                        <div class="audio-player__long-time">00:00</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="quiz__description-txt">
-                    Ворон – крупная птица. Длина тела достигает 70 сантиметров, размах крыльев – до полутора метров. Вороны населяют окрестности Тауэра. В Англии бытует поверье, что в день, когда черные вороны улетят от Тауэра, монархия рухнет.
-                </div>
-              </div> -->
+              <div class="quiz__description">
+                <p>Послушайте плеер.<br>
+                Выберите птицу из списка</p>
+              </div>
             </div>
           </section>
-          <button class="game-button">Следующий вопрос</button>
+          <button id="button-next" class="game-button game-button_disable">Следующий вопрос</button>
+        </section>
+
+        <section class="gallery hide">
+
         </section>
       </div>
     </div>

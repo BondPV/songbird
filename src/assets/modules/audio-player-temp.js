@@ -107,3 +107,6 @@ function getLongTime() {
 }
 
 audio.addEventListener('timeupdate', getLongTime);
+
+
+export default audioPlayer;
