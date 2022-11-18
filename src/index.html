@@ -16,8 +16,8 @@
         </div>
         <nav class="menu">
           <ul class="menu__list">
-            <li class="menu__item"><a href="#main-page" class="menu__link" id="link-main-page">Главная</a></li>
-            <li class="menu__item"><a href="#game" class="menu__link" id="link-game">Играть</a></li>
+            <li class="menu__item"><a href="#main" class="menu__link menu__link_active" id="link-main-page">Главная</a></li>
+            <li class="menu__item"><a href="#game" class="menu__link" id="link-game">Игра</a></li>
             <li class="menu__item"><a href="#gallery" class="menu__link" id="link-gallery">Галерея</a></li>
           </ul>
         </nav>
@@ -30,15 +30,21 @@
       <div class="main__wrapper">
         <section class="main-page">
           <div class="main-page__desc">
-            <h1>Викторина для распознавания птиц по их голосам</h1>
-            <p>Мир птиц богат звуками. Данная игра предлагает попробовать определить птицу по ее голосу.</p>
+            <h1 class="main-page__title" >Викторина для распознавания птиц по их голосам</h1>
           </div>
           <div class="main-page__video-container">
-            <video class="main-page__video" src="assets/song-birds-prev.mp4" muted autoplay="" loop="" controls></video>
+            <video class="main-page__video" src="assets/song-birds-prev.mp4" muted autoplay loop controls></video>
           </div>
           <div class="main-page__caption">
-            <h2>Правила Игры</h2>
-            <p>В начале игры количество баллов 0. Если игрок дал правильный ответ с первой попытки, его счёт увеличивается на 5 баллов, каждая следующая попытка даёт на один балл меньше, если правильный ответ дан только с последней, шестой попытки, игрок получает за него 0 баллов. Баллы за все вопросы суммируются</p>
+            <h2 class="main-page__rules-title">Правила Игры</h2>
+            <ul class="main-page__rules">
+              <li>Попробуйте определить птицу по ее голосу.</li>
+              <li>В начале игры количество баллов 0.</li>
+              <li>Если дадите правильный ответ с первой попытки, то счёт увеличивается на 5 баллов.</li>
+              <li>Каждая следующая попытка даёт на один балл меньше.</li>
+              <li>Если правильный ответ дан с последней попытки, получаете 0 баллов.</li>
+              <li>Баллы за все вопросы суммируются.</li>
+            </ul>
           </div>
           <button id="button-start" class="main-page__button game-button">Начать игру</button>
         </section>
@@ -62,20 +68,6 @@
                 <div class="quiz__question-name" id="question-name">******</div>
                 <span class="quiz__line"></span>
                 <div id="question-audio" class="audio-player">
-                  <!-- <audio id="question-audio" class="audio-player__audio" src="" type="audio/mp3" preload = "metadata" controls >
-                  </audio>
-                  <button class="audio-player__play-btn">
-                    <img src="assets/icons/play.svg" alt="play" class="audio-player__play-btn-img">
-                  </button>
-                  <div class="audio-player__timeline-wrapper">
-                    <div class="audio-player__play-time">00:00</div>
-                    <input type="range" class="audio-player__timeline" max="100" value="0">
-                    <div class="audio-player__long-time">00:00</div>
-                  </div>
-                  <div class="audio-player__speaker-btn">
-                    <img src="assets/icons/speaker.svg" alt="Volume" class="audio-player__speaker">
-                  </div>
-                  <input type="range" class="audio-player__volume" min="0" max="5"> -->
                 </div>
               </div>
             </div>

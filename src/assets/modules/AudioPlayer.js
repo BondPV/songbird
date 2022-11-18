@@ -2,19 +2,20 @@
 
 export default class AudioPlayer {
   constructor(wrapperElement, volumType) {
-    const wrapper = wrapperElement;
+    this.wrapper = wrapperElement;
     //иконки кнопок
     this.playIcon = 'assets/icons/play.svg';
     this.pauseIcon = 'assets/icons/pause.svg';
     this.speakerIcon = 'assets/icons/speaker.svg';
     this.speakerIconMute = 'assets/icons/speaker-mute.svg';
+    this.volumType = volumType;
 
     this.audio = new Audio();
 
     //кнопка play-pause
     this.buttonPlay = document.createElement('BUTTON');
     this.buttonPlay.classList.add('audio-player__play-btn');
-    wrapper.append(this.buttonPlay);
+    this.wrapper.append(this.buttonPlay);
     
     this.buttonPlayImg = document.createElement('IMG');
     this.buttonPlayImg.classList.add('audio-player__play-btn-img');
@@ -25,7 +26,7 @@ export default class AudioPlayer {
     //Шкала воспроизведения
     this.timelineWrapper = document.createElement('div');
     this.timelineWrapper.classList.add('audio-player__timeline-wrapper');
-    wrapper.append(this.timelineWrapper);
+    this.wrapper.append(this.timelineWrapper);
     
     this.playTimeCurrent = document.createElement('div');
     this.playTimeCurrent.classList.add('audio-player__play-time');
@@ -45,11 +46,11 @@ export default class AudioPlayer {
     this.playTimeLong.textContent = '00:00';
     this.timelineWrapper.append(this.playTimeLong);
 
-    if (volumType > 0) {
+    if (this.volumType > 0) {
       //кнопка volume
       this.buttonSpeaker = document.createElement('div');
       this.buttonSpeaker.classList.add('audio-player__speaker-btn');
-      wrapper.append(this.buttonSpeaker);
+      this.wrapper.append(this.buttonSpeaker);
 
       this.buttonSpeakerImg = document.createElement('IMG');
       this.buttonSpeakerImg.classList.add('audio-player__speaker');
@@ -64,7 +65,7 @@ export default class AudioPlayer {
       this.volume.min = '0';
       this.volume.max = '5';
       this.volume.value ='5';
-      wrapper.append(this.volume);
+      this.wrapper.append(this.volume);
     }
   }
 
@@ -93,13 +94,16 @@ export default class AudioPlayer {
     });
     
     //управление громкостью
-    this.buttonSpeaker.addEventListener('click', () => {
-      this.toggleSound();
-    });
+    if (this.volumType > 0) {
+      
+      this.buttonSpeaker.addEventListener('click', () => {
+        this.toggleSound();
+      });
 
-    this.volume.addEventListener('change', () => {
-      this.toggleVolume();
-    });
+      this.volume.addEventListener('change', () => {
+        this.toggleVolume();
+      });
+    }
   }
 
   //Воспроизведение по кнопке
@@ -161,7 +165,7 @@ export default class AudioPlayer {
     } 
   }
 
-  //пересчет секунд в минуты: секунды
+  //пересчет секунд в минуты и секунды
   getTimeCodeFromNum(num) {
     let hours = Math.floor(num / 3600);
     let minutes = Math.floor((num - (hours * 3600)) / 60);

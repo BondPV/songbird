@@ -61,7 +61,8 @@ module.exports = ({ development }) => {
   const pages = getPages(srcPath, 1);
   return {
     mode: development ? 'development' : 'production',
-    devtool: development ? 'inline-source-map' : false,
+    //devtool: development ? 'inline-source-map' : false,
+    devtool: development ? 'inline-source-map' : 'inline-source-map',
     entry: getEntryPoints(pages),
     context: srcPath,
     output: {

@@ -1,35 +1,20 @@
 'use strict';
 
+import birdsData from './assets/modules/birds';
+
 import Quiz from './assets/modules/Quiz';
 import Question from './assets/modules/Question';
 import Answer from './assets/modules/Answer';
-
+import AnswerDescr from './assets/modules/AnswerDescr';
 import AudioPlayer from './assets/modules/AudioPlayer';
 
+// Элементы страницы hide
+const scoreField = document.querySelector('.header__score');
+const quizField = document.querySelector('.quiz');
+const mainPageField = document.querySelector('.main-page');
+const galleryField = document.querySelector('.gallery');
 
-const audioPlayerQuestions = document.querySelector('#question-audio');
-let audioRandom;
-
-
-import birdsData from './assets/modules/birds';
-
-
-const playerButton = document.querySelector('.audio-player__play-btn');
-const playTime = document.querySelector('.audio-player__play-time');
-const longTime = document.querySelector('.audio-player__long-time');
-const timeline = document.querySelector('.audio-player__timeline');
-const soundButton = document.querySelector('.audio-player__speaker-btn');
-const volume = document.querySelector('.audio-player__volume');
-
-const playIcon = '<img src="assets/icons/play.svg" alt="play" class="audio-player__play-btn-img">';
-const pauseIcon = '<img src="assets/icons/pause.svg" alt="pause" class="audio-player__play-btn-img">';
-
-const soundIcon = '<img src="assets/icons/speaker.svg" alt="Volume" class="audio-player__speaker">';
-const muteIcon = '<img src="assets/icons/speaker-mute.svg" alt="Volume" class="audio-player__speaker">';
-
-
-
-
+// Навигационное меню
 const linkMainPage = document.querySelector('#link-main-page');
 const linkGame = document.querySelector('#link-game');
 const linkGallery = document.querySelector('#link-gallery');
@@ -43,184 +28,18 @@ const startButton = document.querySelector('#button-start');
 const questionName = document.querySelector('#question-name');
 const questionImage = document.querySelector('#question-img');
 const answerList = document.querySelector('.quiz__answer-options');
-
-const questionAudio = document.querySelector('#question-audio');
 const answerDescription = document.querySelector('#answer-description');
 
 const audioWin = new Audio("assets/audio/win.mp3");
 const audioError = new Audio("assets/audio/error.mp3");
+const video = document.querySelector('.main-page__video');
+const audioPlayerQuestions = document.querySelector('#question-audio');
 
+let audioQuestion;
 let correctAnswerIsReceived = 0;
 let buttonMode = 'start';
 
-
-
-let isPlaying = false;
-
-
-
-//Воспроизведение по кнопке
-function toggleAudio (audio) {
-  if (audio.paused) {
-    audio.play();
-    playerButton.innerHTML = pauseIcon;
-  } else {
-    audio.pause();
-    playerButton.innerHTML = playIcon;
-  }
-}
-
-
-//playerButton.addEventListener('click', () => toggleAudio(audioQuestion));
-
-//изменение цвета шкалы прогресса
-function changeTimelinePosition (audio) {
-  const percentagePosition = (100 * audio.currentTime) / audio.duration;
-  timeline.style.backgroundSize = `${percentagePosition}% 100%`;
-  timeline.value = percentagePosition;
-}
-
-//audioQuestion.ontimeupdate = changeTimelinePosition(audioQuestion);
-
-//изменение иконки в конце трека
-function audioEnded (audio) {
-  playerButton.innerHTML = playIcon;
-}
-
-//audio.onended = audioEnded;
-
-//*перемещение по шкале прогресса
-function changeSeek (audio) {
-  const time = (timeline.value * audio.duration) / 100;
-  audio.currentTime = time;
-}
-
-//timeline.addEventListener('change', () => changeSeek(audioQuestion));
-
-// включение и выключение звука
-function toggleSound (audio) {
-  audio.muted = !audio.muted;
-  soundButton.innerHTML = audio.muted ? muteIcon : soundIcon;
-}
-
-
-
-//функция для настройки громкости
-// function toggleVolume(audio) { 
-//   audio.volume = volume.value / 10;
-//   audio.muted = !audio.muted;
-//   soundButton.innerHTML = soundIcon;
-// }
-
-// volume.addEventListener('change', () => toggleVolume(audioQuestion));
-
-//*пересчет секунд в минуты:секунды
-
-function getTimeCodeFromNum(num) {
-  let hours = Math.floor(num / 3600);
-  let minutes = Math.floor((num - (hours * 3600)) / 60);
-  let seconds = num - (hours * 3600) - (minutes * 60);
-  
-  seconds = Math.round(seconds);
-  if (hours < 10) {
-    hours   = '0' + hours;
-  }
-  if (minutes < 10) {
-    minutes = '0' + minutes;
-  }
-  if (seconds < 10) {
-    seconds = '0' + seconds; 
-  } 
-  return minutes + ':' + seconds;
-}
-
-//*функция вывода текущего времени воспроизведения
-function getPlaybackTime(audio) {
-  const secNum = audio.currentTime;
-  playTime.innerHTML = getTimeCodeFromNum(secNum); 
-}
-
-//audioQuestion.addEventListener('timeupdate', () => getPlaybackTime(audioQuestion));
-
-//*функция вывода продолжительности трека
-function getLongTime(audio) {
-  const secNum = audio.duration;
-  if(secNum) {
-  longTime.innerHTML = getTimeCodeFromNum(secNum);
-  } 
-}
-
-//TODO Постоянно обновляется, надо переделать
-//audioQuestion.addEventListener('timeupdate', () => getLongTime(audioQuestion));
-
-
-
-
-
-
-
-// викторина
-// //Класс, который представляет сам тест
-// class Quiz {
-//   constructor(questions) {
-//     this.questions = questions;
-//     this.score = 0;
-//     //Номер результата из массива
-//     this.result = 0;
-//     //Номер текущего вопроса
-//     this.current = 0;
-//     //количество кликов
-//     this.click = 0;
-//   }
-
-//   Click(index) {
-//     //Добавляем очки
-//     let value = this.questions[this.current].Click(index);
-//     let correct = -1;
-//     //Если было добавлено хотя бы одно очко, то считаем, что ответ верный
-//     if(value >= 1) {
-//       correct = index;
-//       this.score += 5 - this.click;
-//     } else {
-//       this.click++;
-//       }
-      
-//     return correct;
-//   }
-
-//    //Переход к следующему вопросу
-//   Next() {
-//     this.current++;
-//     this.click = 0;
-//   }
-// }
-
-// //Класс, представляющий вопрос
-// class Question {
-//   constructor(name, audio, answers) {
-//     this.name = name;
-//     this.answers = answers;
-//     this.audio = audio;
-//   }
-
-//   Click(index) {
-//     return this.answers[index].value;
-//   }
-// }
-
-// //Класс, представляющий ответ
-// class Answer {
-//   constructor(name, species, description, image, audio, value) {
-//     this.name = name;
-//     this.species = species;
-//     this.description = description;
-//     this.image = image;
-//     this.audio = audio;
-//     this.value = value;
-//   }
-// }
-
-//Массив с вопросами
+//*Массив с вопросами
 
 let questions = createQuestionsList(birdsData);
 
@@ -243,10 +62,9 @@ function createQuestionsList(array) {
   return questions;
 }
 
-
 let quiz = new Quiz(questions);
 
-//Обновление теста
+//*Обновление теста
 function UpdateQuiz() {
   //Формируем страницу с вопросами
   document.querySelector('.quiz__question-wrapper').classList.remove('hide');
@@ -256,30 +74,19 @@ function UpdateQuiz() {
   //функция кнопки
   buttonMode = 'next';
 
-  //!Проверяем, есть ли ещё вопросы
+  //Проверяем, есть ли ещё вопросы
   if (quiz.current < quiz.questions.length) {
-    //Если есть, меняем вопрос
-    questionName.innerHTML = quiz.questions[quiz.current].name;
-
-    console.dir(audioRandom);
+    
+    //?Если есть, обновляем вопрос
+    questionName.innerHTML = '******';
+    audioPlayerQuestions.innerHTML = '';
+    audioQuestion = new AudioPlayer(audioPlayerQuestions, 1);
     let audioSrc = quiz.questions[quiz.current].audio;
+    audioQuestion.setAudio(audioSrc);
 
-    audioRandom.setAudio(audioSrc);
-
-
-
-
-    // const audioPlayerQuestions = new AudioPlayer(quiz.questions[quiz.current].audio);
-    // questionAudio.src = audioPlayerQuestions.audio.src;
-
-    // console.log(audioPlayerQuestions);
-    // console.log(questionAudio.src);
-    
-    
-
-    
     //Удаляем старые варианты ответов
     answerList.innerHTML = "";
+    
     //Создаём кнопки для новых вариантов ответов
     for(let i = 0; i < quiz.questions[quiz.current].answers.length; i++) {
       let li = document.createElement("li");
@@ -288,6 +95,7 @@ function UpdateQuiz() {
       li.setAttribute("index", i);
       answerList.append(li);
     }
+    
     //Выводим номер текущего вопроса
     if (quiz.current === 0) {
     numberOfQuestions[quiz.current].classList.add('active');
@@ -298,6 +106,7 @@ function UpdateQuiz() {
     
     //Вызываем функцию, которая прикрепит события к новым кнопкам
     Init();
+
   } else {
     //Если это конец, то выводим результат
     document.querySelector('.quiz__question-wrapper').classList.add('hide');
@@ -308,9 +117,13 @@ function UpdateQuiz() {
     buttonMode = 'end';
     gameButton.classList.remove('game-button_disable');
     numberOfQuestions.forEach (item => item.classList.remove('active'));
+    if (quiz.score < 30) {
+      document.querySelector('.congratulate__title').innerHTML = 'Попробуйте еще раз!';
+    }
   }
 }
 
+//* Обработчик на созданные кнопки ответов
 function Init() {
   //Находим все кнопки
   let answerList = document.querySelectorAll(".quiz__answer-item");
@@ -328,13 +141,34 @@ function audioStop(audio) {
   audio.currentTime = 0;
 }
 
+//* Функция нажатия на кнопку ответа
 function Click(index) {
 
   //Получаем номер правильного ответа
   let correct = quiz.Click(index);
+  
   //Находим все кнопки
   let answerList = document.querySelectorAll(".quiz__answer-item");
-      
+  
+  // Создаем HTML разметку для ответа
+  answerDescription.innerHTML = '';
+  
+  let answerImage = quiz.questions[quiz.current].answers[index].image;
+  let answerName = quiz.questions[quiz.current].answers[index].name;
+  let answerSpecies = quiz.questions[quiz.current].answers[index].species;
+  let answerDescr = quiz.questions[quiz.current].answers[index].description;
+  
+  new AnswerDescr(answerDescription, index, answerImage, answerName, answerSpecies, answerDescr);
+  
+  //добавляем плеер в разметку
+  let audioPlayerAnswers = document.querySelector('#answer-audio');
+  let audioAnswer = new AudioPlayer(audioPlayerAnswers, 0);
+  
+  //добавляем в плеер источник audio
+  const audioAnswerSrc = quiz.questions[quiz.current].answers[index].audio;
+  audioAnswer.setAudio(audioAnswerSrc);
+  
+  //? Проверяем ответ
   if(correct >= 0 && correctAnswerIsReceived === 0) {
     correctAnswerIsReceived = 1;
     answerList[correct].classList.add("quiz__answer-item_yes");
@@ -344,7 +178,11 @@ function Click(index) {
     audioStop(audioWin);
     audioWin.play();
     score.innerHTML = quiz.score;
-    
+
+    //останавливаем воспроизведение "вопроса" при правильном ответе
+    audioQuestion.audio.pause();
+
+    //активируем кнопку следующего вопроса
     gameButton.classList.remove('game-button_disable');
   }
 
@@ -354,99 +192,92 @@ function Click(index) {
     audioStop(audioWin);
     audioError.play();
   }
-
-
-
-  
-  // console.log(audioRandom);
-
-  // audioRandom.src =  quiz.questions[quiz.current].answers[index].audio;
-
-  answerDescription.innerHTML = (`
-  <div class="quiz__description quiz__description${index}">
-    <div class="quiz__question">
-      <div class="quiz__question-img"><img src="${quiz.questions[quiz.current].answers[index].image}" alt="bird"></div>
-      <div class="quiz__media-wrapper">
-        <div class="quiz__question-name">${quiz.questions[quiz.current].answers[index].name}</div>
-        <span class="quiz__line"></span>
-        <div class="quiz__question-name-en">${quiz.questions[quiz.current].answers[index].species}</div>
-        <span class="quiz__line"></span>
-        <div class="audio-player">
-          <audio class="audio-player__audio" src="" type="audio/mp3" preload = "metadata" controls>
-          </audio>
-          <button class="audio-player__play-btn play-btn">
-            <img src="assets/icons/play.svg" alt="play" class="audio-player__play-btn-img">
-          </button>
-          <div class="audio-player__timeline-wrapper">
-            <div class="audio-player__play-time">00:00</div>
-            <input type="range" class="audio-player__timeline" max="100" value="0">
-            <div class="audio-player__long-time">00:00</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="quiz__description-txt">${quiz.questions[quiz.current].answers[index].description}</div>
-  </div>
-  `);
-
-console.dir(document.querySelector('.audio-player__audio'));
-
-
-
-  //отслеживание нажатий на кнопку Play
-  answerDescription.addEventListener('click', (event) => {
-      if (event.target && event.target.classList.contains("play-btn")) {
-        console.log(1);
-        audioRandom.playStart();
-      }
-    });
-    
-
-
-
-console.log(score);
-
-  
 }
 
+// наполнение галлереи карточками
+function createGallary() {
+  const wrapper = galleryField;
+  for (let i = 0; i < quiz.questions.length; i++ ) {
+      for (let j = 0; j <= 5; j++) {
+        const cardWrap = document.createElement('div');
+        cardWrap.classList.add('gallery__card');
+        wrapper.append(cardWrap);
+        
+        let image = quiz.questions[i].answers[j].image;
+        let name = quiz.questions[i].answers[j].name;
+        let species = quiz.questions[i].answers[j].species;
+        let descr = quiz.questions[i].answers[j].description;
+        new AnswerDescr(cardWrap, 0, image, name, species, descr);
+  
+        const audioPlayerPosition = cardWrap.querySelector('.audio-player');
+        const audioCard = new AudioPlayer(audioPlayerPosition, 0);
+  
+        const audioSrc = quiz.questions[i].answers[j].audio;
+        audioCard.setAudio(audioSrc);
+      }
+    }
+  } 
 
-
-
-
-//!меню навигации
+//*меню навигации
 linkGame.addEventListener('click', getQuizPage);
 linkMainPage.addEventListener('click', getMainPage);
+linkGallery.addEventListener('click', getGallaryPage);
 
-//!инициализация главной страницы
+//*инициализация главной страницы
 function getMainPage() {
-  document.querySelector('.header__score').classList.add('hide');
-  document.querySelector('.quiz').classList.add('hide');
-  document.querySelector('.main-page').classList.remove('hide');
+  linkGame.classList.remove('menu__link_active');
+  linkGallery.classList.remove('menu__link_active');
+  linkMainPage.classList.add('menu__link_active');
 
-  document.querySelector('.main-page__video').play();
+  scoreField.classList.add('hide');
+  quizField.classList.add('hide');
+  galleryField.classList.add('hide');
+  mainPageField.classList.remove('hide');
+
+  video.play();
 }
 
-//!переходим на страницу с викториной
+//*переходим на страницу с викториной
 startButton.addEventListener('click', getQuizPage);
 
 function getQuizPage() {
-  document.querySelector('.header__score').classList.remove('hide');
-  document.querySelector('.quiz').classList.remove('hide');
-  document.querySelector('.main-page').classList.add('hide');
+  window.location.hash = 'game';
+  linkMainPage.classList.remove('menu__link_active');
+  linkGallery.classList.remove('menu__link_active');
+  linkGame.classList.add('menu__link_active');
 
-  document.querySelector('.main-page__video').pause();
+  scoreField.classList.remove('hide');
+  quizField.classList.remove('hide');
+  mainPageField.classList.add('hide');
+  galleryField.classList.add('hide');
+
+  video.pause();
   
-  audioRandom = new AudioPlayer(audioPlayerQuestions, 1);
-
   questionImage.src = 'assets/images/bird.jpg';
   answerDescription.innerHTML = `<p>Послушайте плеер.<br>Выберите птицу из списка</p>`;
-
   gameButton.innerHTML = "Следующий вопрос";
+
   UpdateQuiz();
 }
 
-//!отслеживание нажатий на кнопку Game
+//* переходим на страницу с галереей
 
+function getGallaryPage() {
+  window.location.hash = 'gallery';
+  linkGame.classList.remove('menu__link_active');
+  linkMainPage.classList.remove('menu__link_active');
+  linkGallery.classList.add('menu__link_active');
+
+  scoreField.classList.add('hide');
+  quizField.classList.add('hide');
+  mainPageField.classList.add('hide');
+  video.pause();
+  
+  galleryField.classList.remove('hide');
+  createGallary(questions);
+}
+
+//*отслеживание нажатий на кнопку Game
 gameButton.addEventListener('click', pressGameButton);
 
 function pressGameButton() {
@@ -468,9 +299,39 @@ function pressGameButton() {
   } 
 }
 
+// роутинг страницы
+initRouter();
 
+function initRouter() {
+  addEventListener('hashchange', handleHash);
+  handleHash();
+}
 
+function handleHash() {
+  const hash = location.hash ? location.hash.slice(1) : '';
+  if (hash === 'main' || hash === '') {
+    getMainPage();
+  }
 
+  if (hash === 'game') {
+    getQuizPage();
+  }
 
+  if (hash === 'gallery') {
+    getGallaryPage();
+  }
+}
 
-
+// Самооценка задания
+const crossCheck = {
+  'https://github.com/rolling-scopes-school/tasks/blob/master/tasks/songbird/songbird-2022q3.md' : 'итог 260 баллов',
+  'Вёрстка, дизайн, UI всех трёх страниц приложения +60' : 60,
+  'Аудиоплеер +30 (у аудиоплеера есть регулятор громкости звука, в карточках регулятор отключен целенаправленно)' : 30,
+  'Верхняя панель страницы викторины +20' : 20,
+  'Блок с вопросом +20' : 20,
+  'Блок с вариантами ответов (названия птиц) +60' : 60,
+  'Блок с описанием птицы: +30' : 30,
+  'Кнопка перехода к следующему вопросу +30': 30,
+  'Extra scope +20 (создана галерея всех птиц)' : 10,
+};
+console.table(crossCheck);
