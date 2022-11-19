@@ -1,6 +1,7 @@
 'use strict';
 
 import birdsData from './assets/modules/birds';
+import btnPageUp from './assets/modules/pageUp';
 
 import Quiz from './assets/modules/Quiz';
 import Question from './assets/modules/Question';
@@ -62,6 +63,17 @@ function createQuestionsList(array) {
   return questions;
 }
 
+// массив для хранения всех экземляров класса AudioPlayer
+let allAudioAnswers = [];
+
+// функция остановки воспроизведения и очистки массива allAudioAnswers
+function clearAllAudioAnswers() {
+  //остановливаем воспроизведение 
+  allAudioAnswers.forEach(elem => audioStop(elem));
+  //обнуляем массив с Audio для оптимизации памяти
+  allAudioAnswers = [];
+} 
+
 let quiz = new Quiz(questions);
 
 //*Обновление теста
@@ -83,6 +95,9 @@ function UpdateQuiz() {
     audioQuestion = new AudioPlayer(audioPlayerQuestions, 1);
     let audioSrc = quiz.questions[quiz.current].audio;
     audioQuestion.setAudio(audioSrc);
+
+    //остановливаем воспроизведение 
+    clearAllAudioAnswers();
 
     //Удаляем старые варианты ответов
     answerList.innerHTML = "";
@@ -120,6 +135,9 @@ function UpdateQuiz() {
     if (quiz.score < 30) {
       document.querySelector('.congratulate__title').innerHTML = 'Попробуйте еще раз!';
     }
+  
+  //остановливаем воспроизведение 
+  clearAllAudioAnswers();
   }
 }
 
@@ -143,7 +161,6 @@ function audioStop(audio) {
 
 //* Функция нажатия на кнопку ответа
 function Click(index) {
-
   //Получаем номер правильного ответа
   let correct = quiz.Click(index);
   
@@ -162,7 +179,7 @@ function Click(index) {
   
   //добавляем плеер в разметку
   let audioPlayerAnswers = document.querySelector('#answer-audio');
-  let audioAnswer = new AudioPlayer(audioPlayerAnswers, 0);
+  let audioAnswer = new AudioPlayer(audioPlayerAnswers, 0, allAudioAnswers);
   
   //добавляем в плеер источник audio
   const audioAnswerSrc = quiz.questions[quiz.current].answers[index].audio;
@@ -192,6 +209,9 @@ function Click(index) {
     audioStop(audioWin);
     audioError.play();
   }
+
+  //остановливаем воспроизведение 
+  allAudioAnswers.forEach(elem => audioStop(elem));
 }
 
 // наполнение галлереи карточками
@@ -275,6 +295,9 @@ function getGallaryPage() {
   
   galleryField.classList.remove('hide');
   createGallary(questions);
+
+  //прокрутка страницы вверх
+  btnPageUp.addEventListener();
 }
 
 //*отслеживание нажатий на кнопку Game
@@ -335,3 +358,5 @@ const crossCheck = {
   'Extra scope +20 (создана галерея всех птиц)' : 10,
 };
 console.table(crossCheck);
+
+

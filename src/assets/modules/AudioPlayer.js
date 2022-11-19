@@ -1,7 +1,8 @@
 //Класс, который представляет плеер
 
 export default class AudioPlayer {
-  constructor(wrapperElement, volumType) {
+  constructor(wrapperElement, volumType, allAudioClassArray) {
+    
     this.wrapper = wrapperElement;
     //иконки кнопок
     this.playIcon = 'assets/icons/play.svg';
@@ -9,8 +10,12 @@ export default class AudioPlayer {
     this.speakerIcon = 'assets/icons/speaker.svg';
     this.speakerIconMute = 'assets/icons/speaker-mute.svg';
     this.volumType = volumType;
-
+    
     this.audio = new Audio();
+    //добавляем созданный Audio class в массив
+    if (allAudioClassArray) {
+      allAudioClassArray.push(this.audio);
+    }
 
     //кнопка play-pause
     this.buttonPlay = document.createElement('BUTTON');
