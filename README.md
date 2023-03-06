@@ -1,4 +1,4 @@
-Deploy: https://rolling-scopes-school.github.io/bondpv-JSFE2022Q3/songbird/
+Deploy: https://bondpv.github.io/songbird/
 
 There are you can find all commands to run this project:
 

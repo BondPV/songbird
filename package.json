@@ -5,12 +5,14 @@
   "name": "my-app",
   "scripts": {
     "start": "webpack serve --env development",
-    "build": "webpack"
+    "build": "webpack",
+    "deploy": "npm run build && npx gh-pages -d dist"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^8.1.1",
     "css-loader": "^5.2.7",
+    "gh-pages": "^5.0.0",
     "html-webpack-plugin": "^5.3.2",
     "mini-css-extract-plugin": "^1.6.2",
     "sass": "^1.42.1",
